@@ -26,13 +26,23 @@ import plotly_express as px
 import analyze_functions as af
 
 
-# Set both overall settings and sidebar settings
-app = dash.Dash(external_stylesheets=[dbc.themes.MATERIA])
+# Set overall settings
+app = dash.Dash(
+    __name__, 
+    external_stylesheets = [dbc.themes.MATERIA],
+    meta_tags = [
+        dict(
+            name="viewport", 
+            content="width=device-width, initial-scale=1.0"
+        )
+    ]
+)
 
 # needed for Heroku to connect to
 server = app.server
 
 
+# Set sidebar settings
 # the style arguments for the sidebar. Position:fixed and a fixed width
 SIDEBAR_STYLE = {
     "position": "fixed",
