@@ -662,8 +662,9 @@ def update_graph(chosen_region, chosen_attribute):
     fig = px.bar(
         df_top, x=chosen_attribute, y=medal_list, 
         title=f"{chosen_region}: top {attr_dict[chosen_attribute]}",
-        labels={"value":"Number of medals", "variable":"Medal"}
+        labels={"value":"Number of medals"}
     )
+    fig.layout.yaxis.title.text = ""
     fig.update_layout(barmode='group', xaxis_tickangle=45)
 
     return fig
