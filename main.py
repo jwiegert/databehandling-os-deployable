@@ -705,5 +705,5 @@ def update_graph(chosen_region, athlete_attribute, athlete_gender):
 
 # Run server or debug mode?
 if __name__ == "__main__":
-    app.run_server(debug=True)
-    #app.run_server(port=8888)
+    #app.run_server(debug=True)
+    app.run_server(port=8888)
