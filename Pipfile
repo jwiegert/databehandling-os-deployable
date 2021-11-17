@@ -10,6 +10,7 @@ plotly-express = "*"
 dash = "*"
 dash-bootstrap-components = "*"
 gunicorn = "*"
+ipython = "*"
 
 [dev-packages]
 

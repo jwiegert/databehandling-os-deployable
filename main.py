@@ -35,7 +35,7 @@ app = dash.Dash(
             name="viewport", 
             content="width=device-width, initial-scale=1.0"
         )
-    ]
+     ], suppress_callback_exceptions=True
 )
 
 # needed for Heroku to connect to
@@ -474,6 +474,8 @@ def render_page_content(pathname):
             ], className='mt-4'),
 
             # TODO: add to canada parts also?
+            # TODO change to english?
+            # TODO move name to the left
             html.Footer([
                 html.H3("120 years of Olympic games", className="h6"),
                 html.P("Dashboard av Yuna och Joachim")],
