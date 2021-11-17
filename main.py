@@ -27,6 +27,9 @@ import analyze_functions as af
 
 
 # Set overall settings
+# Suppress callback exceptions to reduce unecessary missing-callback-errors
+# - advice from error and from
+# https://stackoverflow.com/questions/59568510/dash-suppress-callback-exceptions-not-working
 app = dash.Dash(
     __name__, 
     external_stylesheets = [dbc.themes.MATERIA],
@@ -35,7 +38,7 @@ app = dash.Dash(
             name="viewport", 
             content="width=device-width, initial-scale=1.0"
         )
-     ], suppress_callback_exceptions=True
+    ], suppress_callback_exceptions=True
 )
 
 # needed for Heroku to connect to
@@ -248,7 +251,14 @@ def render_page_content(pathname):
                         marks = slider_marks
                     ),
                 ]),
-            ], className='mt-4')
+            ], className='mt-4'),
+            # Footer title
+            html.Footer([
+                dbc.Col([
+                    html.H3("120 years of Olympic games", className="h6"),
+                    html.P("Dashboard by Yuna & Joachim")
+                ])
+            ], className="navbar fixed-bottom")
         ]
 
     # Canada statistiscs
@@ -321,6 +331,14 @@ def render_page_content(pathname):
                     ),
                 ], lg='8', xl='9'),
             ], className='mt-4'),
+
+            # Footer title
+            html.Footer([
+                dbc.Col([
+                    html.H3("120 years of Olympic games", className="h6"),
+                    html.P("Dashboard by Yuna & Joachim")
+                ])
+            ], className="navbar fixed-bottom")
         ]
 
     # Global statistics
@@ -472,15 +490,14 @@ def render_page_content(pathname):
                     ),
                 ])
             ], className='mt-4'),
-
-            # TODO: add to canada parts also?
-            # TODO change to english?
-            # TODO move name to the left
-            html.Footer([
+        ]),
+        # Footer title
+        html.Footer([
+            dbc.Col([
                 html.H3("120 years of Olympic games", className="h6"),
-                html.P("Dashboard av Yuna och Joachim")],
-                className="navbar fixed-bottom")
-            ]),
+                html.P("Dashboard by Yuna & Joachim")
+            ])
+        ], className="navbar fixed-bottom"),
 
         # stores an intermediate value on the clients browser for sharing between callbacks
         dcc.Store(id="filtered-df")
@@ -792,5 +809,5 @@ def update_graph(chosen_region, athlete_attribute, athlete_gender):
 
 # Run server or debug mode?
 if __name__ == "__main__":
-    app.run_server(debug=True)
-    #app.run_server(port=8050)
+    #app.run_server(debug=True)
+    app.run_server(port=8050)
